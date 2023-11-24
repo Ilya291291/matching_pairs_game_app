@@ -1,14 +1,19 @@
 import { stringify } from "querystring";
-import React from "react";
+import React, { useEffect } from "react";
 import './index.css'
 
 const Card = ({ card, handleClick }) => {
+
+  const isShownClassName = card.isShown ? "card-wrapper flip" : "card-wrapper"
+  const isFoundClassNameBack = card.isFound === true ? 'isFound' : ''
+  const isFoundClassName = card.isFound ? 'found' : ''
+
   return (
-    <div className={card.isShown ? "card-wrapper flip" : "card-wrapper"} onClick={() => handleClick(card)}>
-      <div className="card-inner">
+    <div className={`${isShownClassName}`} onClick={() => handleClick(card)}>
+      <div className={`card-inner ${isFoundClassName}`}>
         <div className="card-flip-front">
         </div>
-        <div className="card-flip-back">
+        <div className={`card-flip-back ${isFoundClassNameBack}`}>
           {String.fromCodePoint(card.card)}
         </div>
       </div>

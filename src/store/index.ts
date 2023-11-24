@@ -1,16 +1,12 @@
 import { createStore, combineReducers  } from 'redux';
 import gameReducer from './game/reducers';
+import timerReducer from './timer/reducers';
+import counterReducer from './counter/reducers';
 
 const rootReducer = combineReducers({
-  gameReducer
+  gameReducer,
+  timerReducer,
+  counterReducer
 })
 
-// export type AppDispatch = typeof store.dispatch;
-// export type RootState = ReturnType<typeof store.getState>;
-// export type AppThunk<ReturnType = void> = ThunkAction<
-//   ReturnType,
-//   RootState,
-//   unknown,
-//   Action<string>
-// >;
 export const store = createStore(rootReducer)

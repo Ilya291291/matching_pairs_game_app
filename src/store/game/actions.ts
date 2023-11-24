@@ -1,8 +1,19 @@
-import { nanoid } from "nanoid"
 
-export const createCards = () => {
+export const startGame = () => {
   return {
-    type: 'game/createCards'
+    type: 'game/startGame'
+  }
+}
+
+export const finishGame = () => {
+  return {
+    type: 'game/finishGame'
+  }
+}
+
+export const resetGame = () => {
+  return {
+    type: 'game/resetGame'
   }
 }
 

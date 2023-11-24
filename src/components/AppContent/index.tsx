@@ -14,7 +14,6 @@ const AppContent = () => {
   return (
     <div className="appcontent_wrapper">
       <Header />
-      AppContent here
       <Main />
       <Footer />
     </div>

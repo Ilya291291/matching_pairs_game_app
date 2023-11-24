@@ -25,12 +25,23 @@
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-/* .card-wrapper:hover {
-  transform: rotateY(180deg);
-} */
+
 .flip {
   transform: rotateY(180deg);
 }
+
+.found {
+  transform: rotate(360deg) !important;
+  background-color: rgb(221, 240, 52) !important;
+  border-radius: 10px;
+  transition: all ease-in-out 0.4s;
+}
+
+.isFound {
+  background-color: rgb(221, 240, 52) !important;
+  border-radius: 10px;
+  transition: all ease-in-out 0.4s;
+ }
 
 .card-flip-front {
   background-color: #98e249;

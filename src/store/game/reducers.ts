@@ -1,9 +1,10 @@
 import { nanoid } from "@reduxjs/toolkit"
+import Card from "components/Cards/components/Card"
 import { SHUFFLED_SMILES_ARRAY } from "fixtures/SMILES_ARRAY"
 
 
 const initialState = {
-  game: 'start',
+  isGameOn: false,
   difficulty: {
     easy: 8,
     normal: '',
@@ -13,7 +14,7 @@ const initialState = {
     card,
     id: nanoid(),
     isShown: false,
-    isFound: false
+    // isFound: false
 })),
   choice1: null,
   choice2: null
@@ -21,13 +22,34 @@ const initialState = {
 
 const gameReducer = (state = initialState, action) => {
   switch(action.type) {
-    case 'game/createCards':
-      return state
+    case 'game/startGame':
+      return {
+        ...state,
+        isGameOn: true
+      }
+    case 'game/finishGame':
+      return {
+        ...state,
+        isGameOn: false
+      }
+    case 'game/resetGame':
+      return {
+        ...state,
+        isGameOn: true,
+        cards: state.cards.map((card) => (
+          // {...card, isShown: false, isFound: false}
+          {...card, isShown: false}
+        ))
+      }
     case 'game/toggleCards':
       return {
         ...state,
         cards: state.cards.map((card) => {
-          return card.id === action.payload ? {...card, isShown: !card.isShown } : card
+          if(card.id === action.payload && !card.isFound) {
+            // return {...card, isShown: !card.isShown, isFound: false}
+            return {...card, isShown: !card.isShown}
+          }
+          return card
         }),
       }
     case 'game/findChoiceOne':
@@ -57,6 +79,8 @@ const gameReducer = (state = initialState, action) => {
             return {...card, isFound: true, isShown: true}
           }else {
             return card
+            // return {...card, isFound: false}
+            // return { ...card, isFound: false, isShown: true };
           }
         }),
       }
