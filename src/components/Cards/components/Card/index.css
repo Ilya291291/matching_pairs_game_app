@@ -1,3 +1,5 @@
+@import url('styles/index.css');
+
 .card-wrapper {
   width: 96px;
   height: 96px;
@@ -23,6 +25,7 @@
   transition: transform 0.6s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 10px;
 }
 
 
@@ -32,19 +35,19 @@
 
 .found {
   transform: rotate(360deg) !important;
-  background-color: rgb(221, 240, 52) !important;
+  background-color: var(--found) !important;
   border-radius: 10px;
   transition: all ease-in-out 0.4s;
 }
 
 .isFound {
-  background-color: rgb(221, 240, 52) !important;
+  background-color: var(--found) !important;
   border-radius: 10px;
   transition: all ease-in-out 0.4s;
  }
 
 .card-flip-front {
-  background-color: #98e249;
+  background-color: var(--items-secondary);
   backface-visibility: hidden;
   position: absolute;
   width: 100%;
@@ -61,7 +64,7 @@
   justify-content: center;
   align-items: center;
   font-size: 3.75rem;
-  background-color: #98e249;
+  background-color: var(--items-secondary);
   border-radius: 10px;
   backface-visibility: hidden;
   transform: rotateY(180deg);

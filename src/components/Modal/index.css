@@ -1,0 +1,76 @@
+@import url('styles/index.css');
+
+.modal {
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+  }
+  
+  .modal-content {
+    max-width: 540px;
+    align-self: center;
+    /* width: 540px;
+    height: 430px; */
+    background: var(--items-secondary);
+    top: 30%;
+    left: 35%;
+    padding: 1rem;
+    border-radius: 15px;
+    transition: all 0.5 ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .enter {
+    opacity: 0;
+  }
+  
+  .enter-active {
+    transition: all 0.5s ease-in-out;
+    opacity: 1;
+  }
+  
+  .enter-end {
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .exit {
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .exit-active {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .exit-end {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+
+.modal-close-btn {
+  background-color: var(--background);
+  border: none;
+  border-radius: 5px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  color: var(--items-secondary);
+  letter-spacing: 0.1rem;
+  transition: all 0.5s ease-in-out;
+}
+.modal-close-btn:hover {
+  background-color: var(--text-primary);
+  color: var(--background);
+}

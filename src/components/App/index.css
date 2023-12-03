@@ -1,3 +1,6 @@
+@import url('styles/index.css');
+
 body {
-  background-color: #14141e;
+  background-color: var(--background);
+  transition: all 0.6s ease-in-out;
 }

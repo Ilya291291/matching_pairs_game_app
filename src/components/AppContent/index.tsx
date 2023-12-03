@@ -1,21 +1,29 @@
 import React from "react";
-import './index.css'
+import './index.css';
 
-import Header from "components/Header";
+import { useSelector } from "react-redux";
+
+import { selectGame } from "store/game/selectors";
+
 import Main from "components/Main";
-import Footer from "components/Footer";
-import { shuffleCards } from "utils/shuffleCards";
-import { duplicateCards } from "utils/duplicateCards"
+import StartGame from "components/StartGame";
+import ChooseDifficulty from "components/ChooseDifficulty";
 
-
-// console.log(shuffleCard(duplicateCards(arr, 8)))
 
 const AppContent = () => {
+
+  const { gameGlobalStart, isDifficultyChosen } = useSelector(selectGame)
+
   return (
     <div className="appcontent_wrapper">
-      <Header />
-      <Main />
-      <Footer />
+      {gameGlobalStart ? (
+        isDifficultyChosen ? (
+          <>
+            <Main />
+            {/* <Footer /> */}
+          </>
+        ) : ( <ChooseDifficulty /> )
+      ) : ( <StartGame/> )}
     </div>
   )
 }

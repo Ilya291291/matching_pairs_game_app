@@ -1,6 +1,29 @@
+@import url('styles/index.css');
+
+
 header {
-  color: #98e249;
+  color: var(--items-secondary);
   width: 85%;
   padding: 2rem;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-logo, .header-switcher {
+  cursor: pointer;
+}
+.logo {
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.logo-wrapper {
+  transition: all 0.5s ease;
+  border-radius: 50%;
+}
+.logo-wrapper:hover {
+  background-color: var(--items-secondary);
+  box-shadow: 0 0 10px 10px var(--items-secondary);
 }

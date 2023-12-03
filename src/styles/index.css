@@ -1,0 +1,22 @@
+:root {
+  --background: #14141e;
+  --background-secondary: rgb(31 193 37 / 10%);
+  --text-primary: white;
+  --items-secondary: #98e249;
+  --found: rgb(221, 240, 52);
+  --theme-icon: '🌚';
+  --switch-shadow-color: #373d4e;
+  /* --text-secondary: , */
+
+}
+
+[data-theme='dark'] {
+  --background: white;
+  --background-secondary: rgb(169 238 255);
+  --text-primary: black;
+  --items-secondary: goldenrod;
+  --found: rgb(183 86 247);
+  --theme-icon: '🌝';
+  --switch-shadow-color: #fce477;
+  /* --text-secondary:  */
+}

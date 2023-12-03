@@ -1,10 +1,18 @@
-import { stringify } from "querystring";
-import React, { useEffect } from "react";
-import './index.css'
+import React from "react";
+import './index.css';
 
-const Card = ({ card, handleClick }) => {
+import { ICards } from 'types/ICard'
+
+interface CardParams {
+  card: ICards,
+  handleClick: () => void
+}
+
+const Card: React.FC<CardParams> = ({ card, handleClick }) => {
 
   const isShownClassName = card.isShown ? "card-wrapper flip" : "card-wrapper"
+  // const isShownClassName = "card-wrapper flip"
+
   const isFoundClassNameBack = card.isFound === true ? 'isFound' : ''
   const isFoundClassName = card.isFound ? 'found' : ''
 

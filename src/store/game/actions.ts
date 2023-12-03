@@ -1,4 +1,10 @@
 
+export const startGameGlobally = () => {
+  return {
+    type: 'game/startGameGlobally'
+  }
+}
+
 export const startGame = () => {
   return {
     type: 'game/startGame'
@@ -13,7 +19,7 @@ export const finishGame = () => {
 
 export const resetGame = () => {
   return {
-    type: 'game/resetGame'
+    type: 'game/resetGame',
   }
 }
 
@@ -54,5 +60,30 @@ export const findChoiceTwo = (item, id) => {
 export const resetPair = () => {
   return {
     type: 'game/resetPair',
+  }
+}
+
+export const setClicksToFindMatch = () => {
+  return {
+    type: 'game/setClicksToFindMatch'
+  }
+}
+
+export const incrementClicksToMatch = () => {
+  return {
+    type: 'game/incrementClicksToMatch'
+  }
+}
+
+export const toggleIsDifficultyChosen = () => {
+  return {
+    type: 'game/toggleIsDifficultyChosen'
+  }
+}
+
+export const setDifficulty = (id) => {
+  return {
+    type: 'game/setDifficulty',
+    payload: id
   }
 }

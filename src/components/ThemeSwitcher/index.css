@@ -1,0 +1,29 @@
+@import url('styles/index.css');
+
+
+.input-switch {
+  opacity: 0;
+}
+
+.header-switcher {
+  width: 20px;
+  display: flex;
+  /* height: 50px; */
+  /* border: 3px solid var(--background-secondary); */
+  padding: 1rem;
+  border-radius: 15px;
+  font-size: 2rem;
+  transition: all 0.5s ease-in-out;
+}
+.header-switcher::before {
+  content: var(--theme-icon);
+  text-shadow: 0 0 35px var(--switch-shadow-color);
+  transition: all 0.5s ease-in-out;
+}
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid var(--background);
+  background-color: var(--background-secondary);
+}

@@ -1,0 +1,45 @@
+@import url('styles/index.css');
+
+.start-game {
+  position: absolute;
+  top: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.6s ease-in-out;
+}
+
+.start-game-name {
+  font-size: 2rem;
+  color: var(--text-primary);
+  font-weight: bold;
+}
+
+.start-game-text {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+@keyframes inAnimation {
+  0% {
+      opacity: 0;
+      /* visibility: hidden; */
+  }
+  100% {
+      opacity: 1;
+      /* visibility: visible; */
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+      /* visibility: hidden; */
+  }
+}

@@ -1,0 +1,79 @@
+@import url('styles/index.css');
+
+
+.difficulty-wrapper {
+    color: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    top: 40%;  
+}
+.difficulty-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.input-wrapper {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    align-items: center;
+}
+.single-input-wrapper {
+    width: 100px;
+    margin-right: 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--items-secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.difficulty-radiobutton {
+    opacity: 0;
+    width: 0px;
+    display: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    z-index: 120;
+}
+.difficulty-label {
+    padding: 0.75rem;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.4s ease 0s;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+@keyframes inAnimation {
+    0% {
+        opacity: 0;
+        /* visibility: hidden; */
+    }
+    100% {
+        opacity: 1;
+        /* visibility: visible; */
+    }
+  }
+  
+  @keyframes outAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        /* transform: translateY(1000px); */
+        /* visibility: hidden; */
+    }
+  }

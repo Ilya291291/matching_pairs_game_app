@@ -1,6 +1,9 @@
 const initialState = {
-  timer: 30,
-  isTimerOn: false
+  speed: 500,
+  timer: 60,
+  isTimerOn: false,
+  isDifficultyChosen: false,
+  difficulty: 'easy'
 }
 
 const timerReducer = (state = initialState, action) => {
@@ -25,6 +28,24 @@ const timerReducer = (state = initialState, action) => {
         ...state,
         timer: initialState.timer
       }
+    case 'timer/setTimeAndSpeed':
+      const [timeOfGame, speedOfTurning] = action.payload
+      return {
+        ...state,
+        timer: Number(timeOfGame),
+        speed: Number(speedOfTurning)
+      }
+    // case 'timer/setDifficulty': {
+    //   return {
+    //     ...state,
+    //     difficulty: action.payload
+    //   }
+    // }
+    // case 'timer/toggleIsDifficultyChosen':
+    //   return {
+    //     ...state,
+    //     isDifficultyChosen: true
+    //   }
     default:
       return state
   }

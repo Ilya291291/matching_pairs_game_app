@@ -4,7 +4,8 @@ import './index.css'
 const Footer = () => {
   return (
     <footer>
-        Footer here
+        Игра на совпадение пар, говорят, развивает память. 
+        <span className="footer-span">Coded by Ilya Smirnov</span>
     </footer>
   )
 }

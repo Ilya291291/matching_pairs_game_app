@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useModal from "hooks/useModal";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,20 +7,24 @@ import './index.css';
 
 import Card from "./components/Card";
 
-import { shuffleCards } from 'utils/shuffleCards'
-import { duplicateCards } from 'utils/duplicateCards'
+// import { shuffleCards } from 'utils/shuffleCards'
+// import { duplicateCards } from 'utils/duplicateCards'
 
-import { toggleCards } from "store/game/actions";
+import { finishGame, toggleCards } from "store/game/actions";
 import { findMatches } from "store/game/actions";
 import { findChoiceOne, findChoiceTwo } from "store/game/actions";
 import { resetPair } from "store/game/actions";
+import { setClicksToFindMatch } from "store/game/actions";
+import { incrementClicksToMatch } from 'store/game/actions';
 
 import { counterIncrement } from "store/counter/actions";
 
 import { selectGame } from "store/game/selectors";
+import { selectTimer } from "store/timer/selectors";
+import { selectCounter } from "store/counter/selectors";
 
 
-const Cards = () => {
+const Cards = ({ onOpen }) => {
 
   const dispatch = useDispatch()
 
@@ -27,36 +32,63 @@ const Cards = () => {
     isGameOn, 
     cards, 
     choice1, 
-    choice2 
+    choice2,
+    difficulty
   } = useSelector(selectGame)
+
+  const { speed } = useSelector(selectTimer)
 
   const handleClick = (card) => {
     if(isGameOn) {
       if (!choice1) {
-        dispatch(toggleCards(card.id))
-        dispatch(findChoiceOne(card.card, card.id))
-        dispatch(counterIncrement())
-      }else if(choice1 && !choice2) {
-        dispatch(toggleCards(card.id))
-        dispatch(findChoiceTwo(card.card, card.id))
-        dispatch(counterIncrement()) 
-      }
-    }
-  }
-  console.log(cards)
-  useEffect(() => {
-    if(isGameOn) {
-      if(choice1?.choice && choice2?.choice) {
-        if(choice1.choice === choice2.choice && choice1.id !== choice2.id) {
-          setTimeout(() => dispatch(findMatches()), 500)
-          setTimeout(() => dispatch(resetPair()), 500)
-          //plus count + 1 for the timer
+        if(difficulty === 'hard') {
+          dispatch(incrementClicksToMatch())
+          dispatch(setClicksToFindMatch())
+          dispatch(toggleCards(card.id))
+          dispatch(findChoiceOne(card.card, card.id))
+          dispatch(counterIncrement())
         }else {
-          setTimeout(() => dispatch(resetPair()), 500)
+          dispatch(toggleCards(card.id))
+          dispatch(findChoiceOne(card.card, card.id))
+          dispatch(counterIncrement())  
+        }
+      }else if(choice1 && !choice2) {
+        if(difficulty === 'hard') {
+          dispatch(incrementClicksToMatch())
+          dispatch(setClicksToFindMatch())
+          dispatch(toggleCards(card.id))
+          dispatch(findChoiceTwo(card.card, card.id))
+          dispatch(counterIncrement())
+        }else {
+          dispatch(toggleCards(card.id))
+          dispatch(findChoiceTwo(card.card, card.id))
+          dispatch(counterIncrement())   
         }
       }
     }
-  }, [choice1, choice2])
+  }
+
+// console.log(clicksToFindMatch)
+
+  useEffect(() => {
+    if(isGameOn) {
+      if(difficulty === 'hard') {
+        dispatch(setClicksToFindMatch())
+      }
+      if(choice1?.choice && choice2?.choice) {
+        
+        if(choice1.choice === choice2.choice && choice1.id !== choice2.id) {
+          setTimeout(() => dispatch(findMatches()), speed)
+          setTimeout(() => dispatch(resetPair()), speed)
+        }else {
+          setTimeout(() => dispatch(resetPair()), speed)
+        }
+      }else if(cards.every((card) => card.isFound)) {
+        setTimeout(() => dispatch(finishGame()))
+        setTimeout(() => onOpen(), 1000)
+      }
+    }
+  }, [dispatch, choice1, choice2, difficulty])
 
   return (
     <div className="cards_wrapper">
@@ -67,7 +99,6 @@ const Cards = () => {
             handleClick={handleClick}
           />
         ))}
-        {/* <button onClick={handleShuffle}>shuffle cards</button> */}
     </div>
   )
 }

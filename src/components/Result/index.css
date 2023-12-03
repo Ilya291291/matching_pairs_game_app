@@ -1,0 +1,17 @@
+@import url('styles/index.css');
+
+.result-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+.result-text {
+  color: var(--text-primary);
+}
+.pairs-result {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}

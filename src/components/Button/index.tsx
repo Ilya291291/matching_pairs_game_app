@@ -7,22 +7,24 @@ import { toggleTimerOn } from "store/timer/actions";
 import { resetGame } from "store/game/actions";
 import { resetTimer } from "store/timer/actions";
 import { resetClicksCounter } from "store/counter/actions";
+import { startGameGlobally } from 'store/game/actions';
 
 import { selectTimer } from "store/timer/selectors";
+import { selectGame } from "store/game/selectors";
 
 
 const Button = ({ buttonText }) => {
 
   const dispatch = useDispatch()
 
-//   const { isGameOn } = useSelector(selectGame)
-
 const { timer } = useSelector(selectTimer)
+const { cards } = useSelector(selectGame)
 
   const handleClick = () => {
+    dispatch(startGameGlobally())
     dispatch(startGame())
     dispatch(toggleTimerOn())
-    if(timer === 0) {
+    if(timer === 0 || cards.every((card) => card.isFound)) {
       dispatch(resetGame())
       dispatch(resetTimer())
       dispatch(resetClicksCounter())

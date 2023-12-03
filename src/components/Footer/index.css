@@ -1,0 +1,20 @@
+@import url('styles/index.css');
+
+footer {
+  width: 85%;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-span {
+  color: var(--items-secondary);
+}
