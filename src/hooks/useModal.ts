@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const useModal = () => {
   
   const [isOpen, setIsOpen] = useState(false)
-
-  // console.log(isOpen)
 
   const toggleOpen = (): void => {
     setIsOpen(true)
@@ -13,12 +11,6 @@ const useModal = () => {
   const toggleClose = (): void => {
     setIsOpen(false)
   }
-
-  // useEffect(() => {
-  //   if(isOpen) {
-  //     toggleOpen()
-  //   }
-  // } , [isOpen])
 
   return {
     isOpen,

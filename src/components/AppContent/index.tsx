@@ -20,7 +20,6 @@ const AppContent = () => {
         isDifficultyChosen ? (
           <>
             <Main />
-            {/* <Footer /> */}
           </>
         ) : ( <ChooseDifficulty /> )
       ) : ( <StartGame/> )}

@@ -33,7 +33,6 @@ const Main = () => {
         <Modal isOpen={isOpen} onClose={toggleClose}>
           <Result />
         </Modal>
-        {/* <button onClick={toggleOpen}></button> */}
         <Timer onOpen={toggleOpen}/>
         <Footer />
     </main>

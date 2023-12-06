@@ -12,19 +12,23 @@ import { startGameGlobally } from 'store/game/actions';
 import { selectTimer } from "store/timer/selectors";
 import { selectGame } from "store/game/selectors";
 
+interface ButtonParams {
+  buttonText: string
+}
 
-const Button = ({ buttonText }) => {
+const Button: React.FC<ButtonParams> = ({ buttonText }) => {
 
   const dispatch = useDispatch()
 
-const { timer } = useSelector(selectTimer)
-const { cards } = useSelector(selectGame)
+  const { timer } = useSelector(selectTimer)
+  
+  const { cards } = useSelector(selectGame)
 
   const handleClick = () => {
     dispatch(startGameGlobally())
     dispatch(startGame())
     dispatch(toggleTimerOn())
-    if(timer === 0 || cards.every((card) => card.isFound)) {
+    if(timer === 0 || cards?.every((card) => card.isFound)) {
       dispatch(resetGame())
       dispatch(resetTimer())
       dispatch(resetClicksCounter())

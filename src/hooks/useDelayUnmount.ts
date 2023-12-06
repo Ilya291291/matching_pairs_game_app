@@ -1,22 +1,8 @@
-import React from 'react';
-
 const useDelayUnmount = () => {
 
-//   const [showDiv, setShowDiv] = useState(false)
+  const mountedStyle: {animation: string} = { animation: "inAnimation 750ms ease-in" };
 
-//   useEffect(() => {
-//     let timeOutId
-//     if(isMouned && !showDiv) {
-//       setShowDiv(true)
-//     }else if (!isMouned && showDiv) {
-//         timeOutId = setTimeout(() => setShowDiv(false), delayTime)
-//     }
-//     return () => clearTimeout(timeOutId)
-//   }, [isMouned, delayTime, showDiv])
-
-  const mountedStyle = { animation: "inAnimation 750ms ease-in" };
-
-  const unmountedStyle = {
+  const unmountedStyle :{animation: string, animationFillMode: string}= {
     animation: "outAnimation 770ms ease-out",
     animationFillMode: "forwards"
   }

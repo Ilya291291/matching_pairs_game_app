@@ -1,3 +1,6 @@
+import { ITimer } from './types';
+import { AnyAction } from '@reduxjs/toolkit';
+
 const initialState = {
   speed: 500,
   timer: 60,
@@ -6,7 +9,7 @@ const initialState = {
   difficulty: 'easy'
 }
 
-const timerReducer = (state = initialState, action) => {
+const timerReducer = (state: ITimer = initialState, action : AnyAction) => {
   switch(action.type) {
     case 'timer/startTimer':
     return {
@@ -35,17 +38,6 @@ const timerReducer = (state = initialState, action) => {
         timer: Number(timeOfGame),
         speed: Number(speedOfTurning)
       }
-    // case 'timer/setDifficulty': {
-    //   return {
-    //     ...state,
-    //     difficulty: action.payload
-    //   }
-    // }
-    // case 'timer/toggleIsDifficultyChosen':
-    //   return {
-    //     ...state,
-    //     isDifficultyChosen: true
-    //   }
     default:
       return state
   }

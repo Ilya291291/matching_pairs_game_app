@@ -1,1 +1,3 @@
-export const selectTheme = (state) => state.themeReducer
+import { ITheme } from "./types"
+
+export const selectTheme = (state: { themeReducer: ITheme }) => state.themeReducer

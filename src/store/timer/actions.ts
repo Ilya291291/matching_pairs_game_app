@@ -22,22 +22,9 @@ export const resetTimer = () => {
   }
 }
 
-export const setTimeAndSpeed = (arrayOfVals) => {
+export const setTimeAndSpeed = (arrayOfVals: string[]) => {
   return {
     type: 'timer/setTimeAndSpeed',
     payload: arrayOfVals
   }
 }
-
-// export const toggleIsDifficultyChosen = () => {
-//   return {
-//     type: 'timer/toggleIsDifficultyChosen'
-//   }
-// }
-
-// export const setDifficulty = (id) => {
-//   return {
-//     type: 'timer/setDifficulty',
-//     payload: id
-//   }
-// }

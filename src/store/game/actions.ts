@@ -29,7 +29,7 @@ export const shuffleCards = () => {
   }
 }
 
-export const toggleCards = (card) => {
+export const toggleCards = (card : string) : {type: string, payload: string} => {
   return {
     type: 'game/toggleCards',
     payload: card
@@ -43,14 +43,14 @@ export const findMatches = () => {
   }
 }
 
-export const findChoiceOne = (item, id) => {
+export const findChoiceOne = (item : string, id : string): {type: string, payload: {item:string, id: string}} => {
   return {
     type: 'game/findChoiceOne',
     payload: { item, id }
   }
 }
 
-export const findChoiceTwo = (item, id) => {
+export const findChoiceTwo = (item : string, id : string) => {
   return {
     type: 'game/findChoiceTwo',
     payload: { item, id }
@@ -81,9 +81,9 @@ export const toggleIsDifficultyChosen = () => {
   }
 }
 
-export const setDifficulty = (id) => {
+export const setDifficulty = (difficulty : string) => {
   return {
     type: 'game/setDifficulty',
-    payload: id
+    payload: difficulty
   }
 }

@@ -10,10 +10,11 @@ import { selectTheme } from "store/theme/selectors";
 const ThemeSwitcher = () => {
 
   const dispatch = useDispatch()
+  
   const { isDarkMode } = useSelector(selectTheme)
 
-  const handleChange = (event) => {
-    return event.target.checked ? dispatch(toggleSwitch('dark')) : dispatch(toggleSwitch('light'))
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    event.target.checked ? dispatch(toggleSwitch('dark')) : dispatch(toggleSwitch('light'))
   }
 
   useEffect(() => {

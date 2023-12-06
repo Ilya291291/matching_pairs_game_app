@@ -1,8 +1,11 @@
+import { AnyAction } from "@reduxjs/toolkit"
+import { ICounter } from "./types"
+
 const initialState = {
   counter: 0,
 }
 
-const counterReducer = (state = initialState, action) => {
+const counterReducer = (state: ICounter = initialState, action: AnyAction) => {
   switch(action.type) {
     case 'counter/counterIncrement':
     return {

@@ -1,1 +1,3 @@
-export const selectCounter = (state) => state.counterReducer
+import { ICounter } from "./types"
+
+export const selectCounter = (state: { counterReducer: ICounter }) => state.counterReducer

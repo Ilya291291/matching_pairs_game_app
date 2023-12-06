@@ -1,15 +1,13 @@
-import { nanoid } from "@reduxjs/toolkit"
-import { SHUFFLED_SMILES_ARRAY } from "fixtures/SMILES_ARRAY";
+import { AnyAction, nanoid } from "@reduxjs/toolkit"
+import { IGame } from "./types";
+import { SMILES_ARRAY } from "fixtures/SMILES_ARRAY";
+import { shuffleCards } from "utils/shuffleCards";
+
 
 const initialState = {
   gameGlobalStart: false,
   isGameOn: false,
-  // difficulty: {
-  //   easy: [60, 500],
-  //   normal: [45, 400],
-  //   hard: [30, 300]
-  // },
-  cards: SHUFFLED_SMILES_ARRAY().map((card) => ({
+  cards: shuffleCards(SMILES_ARRAY).map((card) => ({
     card,
     id: nanoid(),
     isShown: false,
@@ -23,7 +21,7 @@ const initialState = {
   isDifficultyChosen: false
 }
 
-const gameReducer = (state = initialState, action) => {
+const gameReducer = (state: IGame = initialState, action: AnyAction) => {
   switch(action.type) {
     case 'game/startGameGlobally':
       return {
@@ -44,11 +42,7 @@ const gameReducer = (state = initialState, action) => {
       return {
         ...state,
         isGameOn: true,
-        // cards: state.cards.map((card) => (
-        //   {...card, isShown: false, isFound: false}
-        //   // {...card, isShown: false}
-        // ))
-        cards: SHUFFLED_SMILES_ARRAY().map((card) => ({
+        cards: shuffleCards(SMILES_ARRAY).map((card) => ({
           card,
           id: nanoid(),
           isShown: false,
@@ -58,11 +52,11 @@ const gameReducer = (state = initialState, action) => {
         isDifficultyChosen: false
       }
     case 'game/toggleCards':
+        const id : string = action.payload
         return {
           ...state,
-          cards: state.cards.map((card) => {
-            if(card.id === action.payload && !card.isFound) {
-              // return {...card, isShown: !card.isShown, isFound: false}
+          cards: state.cards?.map((card) => {
+            if(card.id === id && !card.isFound) {
               return {...card, isShown: !card.isShown}
             }
             return card
@@ -81,17 +75,16 @@ const gameReducer = (state = initialState, action) => {
     case 'game/resetPair':
       return {
         ...state,
-        cards: state.cards.map((card) => {
+        cards: state.cards?.map((card) => {
           return card.isFound ? card : {...card, isShown: false}
         }),
         choice1: null,
         choice2: null
       }
     case 'game/findMatches' :
-        
         return {
           ...state,
-          cards: state.cards.map((card) => {
+          cards: state.cards?.map((card) => {
             if(card.card === state.choice1?.choice || card.card === state.choice2?.choice) {
               return {...card, isFound: true, isShown: true}
             }else {
@@ -119,26 +112,21 @@ const gameReducer = (state = initialState, action) => {
       }
 
     case 'game/setClicksToFindMatch':
-      const clickedCards = state.cards.filter((card) => card?.isFound);
-      if(clickedCards.length % 2 === 0) {
-        if(state.foundPairs.length !== clickedCards.length) {
+      const clickedCards = state.cards?.filter((card) => card?.isFound);
+      if(clickedCards!.length % 2 === 0) {
+        if(state.foundPairs.length !== clickedCards!.length) {
           return {
             ...state,
             clicksToFindMatch: 0,
             foundPairs: clickedCards,
-            // choice1: null,
-            // choice2: null  
           }
         }
       }
-      if(state.clicksToFindMatch > 8 && clickedCards.length !== 0) {
+      if(state.clicksToFindMatch > 8 && clickedCards!.length !== 0) {
         return {
           ...state,
-          cards: state.cards.map((card) => ({...card, isShown: false, isFound: false})),
+          cards: state.cards!.map((card) => ({...card, isShown: false, isFound: false})),
           clicksToFindMatch: 0,
-          // foundPairs: [],
-          // choice1: null,
-          // choice2: null
         }
       }                
       return state

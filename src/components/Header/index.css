@@ -1,10 +1,8 @@
 @import url('styles/index.css');
 
-
 header {
   color: var(--items-secondary);
   width: 85%;
-  padding: 2rem;
   text-align: center;
   display: flex;
   justify-content: space-between;

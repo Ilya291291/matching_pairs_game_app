@@ -1,6 +1,6 @@
-export interface ICards {
-  card: string | number,
+export interface ICard {
+  card: string,
   id: string,
   isShown: boolean,
-  isFound?: boolean
+  isFound?: boolean,
 }

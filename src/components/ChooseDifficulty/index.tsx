@@ -13,8 +13,9 @@ const ChooseDifficulty = () => {
 
   const { isDifficultyChosen } = useSelector(selectGame)
 
-  const handleChange = (event) => {
-    const timeAndSpeed = event.target.value.split(', ')
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const target = event.target as HTMLInputElement
+    const timeAndSpeed: string[] = target.value.split(', ')
     dispatch(setTimeAndSpeed(timeAndSpeed))
     dispatch(toggleIsDifficultyChosen())
     dispatch(setDifficulty(event.target.id))
@@ -26,23 +27,23 @@ const ChooseDifficulty = () => {
 
   return (
     <div className="difficulty-wrapper" style={style}>
-        <div className="difficulty-text">
-            Выберите уровень сложности
+      <div className="difficulty-text">
+        Выберите уровень сложности
+      </div>
+      <div className="input-wrapper">
+        <div className="single-input-wrapper">
+          <input type="radio" name="difficulty" id="easy" value="60, 500" className="difficulty-radiobutton" onChange={handleChange}/>
+          <label htmlFor="easy" className="difficulty-label">Начальный</label>
         </div>
-        <div className="input-wrapper">
-                <div className="single-input-wrapper">
-                    <input type="radio" name="difficulty" id="easy" value="60, 500" className="difficulty-radiobutton" onChange={handleChange}/>
-                    <label htmlFor="easy" className="difficulty-label">Начальный</label>
-                </div>
-                <div className="single-input-wrapper">
-                    <input type="radio" name="difficulty" id="normal" value="45, 400" className="difficulty-radiobutton" onChange={handleChange}/>
-                    <label htmlFor="normal" className="difficulty-label">Средний</label>
-                </div>
-                <div className="single-input-wrapper">
-                    <input type="radio" name="difficulty" id="hard" value="30, 300" className="difficulty-radiobutton" onChange={handleChange}/>
-                    <label htmlFor="hard" className="difficulty-label">Хард</label>
-                </div>
+        <div className="single-input-wrapper">
+          <input type="radio" name="difficulty" id="normal" value="45, 400" className="difficulty-radiobutton" onChange={handleChange}/>
+          <label htmlFor="normal" className="difficulty-label">Средний</label>
         </div>
+        <div className="single-input-wrapper">
+          <input type="radio" name="difficulty" id="hard" value="30, 300" className="difficulty-radiobutton" onChange={handleChange}/>
+          <label htmlFor="hard" className="difficulty-label">Хард</label>
+        </div>
+      </div>
     </div>
   )
 }

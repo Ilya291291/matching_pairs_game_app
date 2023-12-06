@@ -1,11 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistReducer , persistStore} from 'redux-persist';
+
+import storage from 'redux-persist/lib/storage';
+
 import gameReducer from './game/reducers';
 import timerReducer from './timer/reducers';
 import counterReducer from './counter/reducers';
 import themeReducer from './theme/reducers';
-import { persistReducer , persistStore} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { composeWithDevTools } from 'redux-devtools-extension';
+
 
 
 const rootReducer = combineReducers({

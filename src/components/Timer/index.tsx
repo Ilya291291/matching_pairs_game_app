@@ -12,18 +12,22 @@ import { timeIsUp } from "store/timer/actions";
 
 import Button from "components/Button";
 
-const Timer = ({ onOpen }) => {
+interface TimerParams {
+  onOpen: () => void
+}
+
+const Timer: React.FC<TimerParams> = ({ onOpen }) => {
 
   const dispatch = useDispatch()
 
-  const { timer, isTimerOn, isDifficultyChosen } = useSelector(selectTimer)
+  const { timer, isTimerOn } = useSelector(selectTimer)
   const { counter } = useSelector(selectCounter)
   const { isGameOn, cards } = useSelector(selectGame)
 
   useEffect(() => {
     if(isTimerOn && isGameOn) {
       let ticking = setInterval(() => dispatch(startTimer()), 1000)
-      if(timer === 0 || cards.every((card) => card.isFound)) {
+      if(timer === 0 || cards?.every((card) => card.isFound)) {
         dispatch(finishGame())
         dispatch(timeIsUp())
         setTimeout(() => onOpen(), 500)
@@ -37,7 +41,7 @@ const Timer = ({ onOpen }) => {
   const timerText = isTimerOn ? timer : ''
   const counterText = isTimerOn ? counter : ''
 
-  const buttonText = timer === 0 || cards.every((card) => card.isFound) ? 'Молоток, зацени свой результат. Рестарт' 
+  const buttonText = timer === 0 || cards?.every((card) => card.isFound) ? 'Молоток, зацени свой результат. Рестарт' 
   : isTimerOn ? 'Дерзай' : 'Начать игру'
 
   return (

@@ -1,12 +1,9 @@
 @import url('styles/index.css');
 
-
 main {
-  /* background-color: rgb(31 193 37 / 10%); */
   background-color: var(--background-secondary);
   width: 85%;
-  /* height: 85vh; */
-  height: auto;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,21 +11,18 @@ main {
 }
 @keyframes inAnimation {
   0% {
-      /* opacity: 0; */
-      /* visibility: hidden; */
+      opacity: 0;
   }
   100% {
-      /* opacity: 1; */
-      /* visibility: visible; */
+      opacity: 1;
   }
 }
 
 @keyframes outAnimation {
   0% {
-      /* opacity: 0; */
+      opacity: 0;
   }
   100% {
-      /* opacity: 1; */
-      /* visibility: hidden; */
+      opacity: 1;
   }
 }

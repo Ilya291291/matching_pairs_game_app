@@ -9,14 +9,13 @@ import { selectGame } from "store/game/selectors";
 
 
 const Result = () => {
-  // const dispatch = useDispatch()
 
   const { timer } = useSelector(selectTimer)
   const { counter } = useSelector(selectCounter)
   const { cards } = useSelector(selectGame)
 
-  const timerResultText = timer > 0 ? 60 - timer : timer
-  const foundPairsText = cards.filter((card) => card.isFound) ? cards.filter((card) => card.isFound).length / 2 : 0
+  const timerResultText: number = timer > 0 ? 60 - timer : timer
+  const foundPairsText: number = cards?.filter((card) => card.isFound) ? cards?.filter((card) => card.isFound).length / 2 : 0
 
   return (
     <div className="result-wrapper">

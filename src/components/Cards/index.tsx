@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import useModal from "hooks/useModal";
+import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,8 +6,6 @@ import './index.css';
 
 import Card from "./components/Card";
 
-// import { shuffleCards } from 'utils/shuffleCards'
-// import { duplicateCards } from 'utils/duplicateCards'
 
 import { finishGame, toggleCards } from "store/game/actions";
 import { findMatches } from "store/game/actions";
@@ -21,10 +18,13 @@ import { counterIncrement } from "store/counter/actions";
 
 import { selectGame } from "store/game/selectors";
 import { selectTimer } from "store/timer/selectors";
-import { selectCounter } from "store/counter/selectors";
+import { ICard } from "types/ICard";
 
+interface CardsParams {
+  onOpen: () => void
+}
 
-const Cards = ({ onOpen }) => {
+const Cards: React.FC<CardsParams> = ({ onOpen }) => {
 
   const dispatch = useDispatch()
 
@@ -38,7 +38,7 @@ const Cards = ({ onOpen }) => {
 
   const { speed } = useSelector(selectTimer)
 
-  const handleClick = (card) => {
+  const handleClick = (card: ICard): void => {
     if(isGameOn) {
       if (!choice1) {
         if(difficulty === 'hard') {
@@ -83,7 +83,7 @@ const Cards = ({ onOpen }) => {
         }else {
           setTimeout(() => dispatch(resetPair()), speed)
         }
-      }else if(cards.every((card) => card.isFound)) {
+      }else if(cards?.every((card) => card.isFound)) {
         setTimeout(() => dispatch(finishGame()))
         setTimeout(() => onOpen(), 1000)
       }
@@ -92,7 +92,7 @@ const Cards = ({ onOpen }) => {
 
   return (
     <div className="cards_wrapper">
-        {cards.map((card) => (
+        {cards?.map((card) => (
           <Card 
             key={card.id} 
             card={card} 
